@@ -11,7 +11,7 @@ import {
 import {  HiOutlineClipboardList,
   HiOutlineLogout,
 } from "react-icons/hi";
-import { Menu, X, Store, Tv } from "lucide-react";
+import { Menu, X, Store, Tv, List } from "lucide-react";
 
 export default function Sidebar() {
   const pathname = usePathname();
@@ -23,6 +23,7 @@ export default function Sidebar() {
     { name: "Dashboard", href: "/dashboard", icon: HiOutlineHome },
     { name: "Orders", href: "/orders", icon: HiOutlineClipboardList },
     { name: "Campaigns", href: "/campaigns", icon: Tv },
+    { name: "Sellers adds", href: "/campaigns_list", icon: List },    
     { name: "Staff Profile", href: "/profile", icon: HiOutlineUserGroup },
   ];
 
@@ -34,7 +35,9 @@ export default function Sidebar() {
   };
 
   const LinkItem = (item: typeof menuItems[0]) => {
-    const isActive = pathname === item.href || (item.href !== "/dashboard" && pathname.startsWith(item.href));
+    const isActive = 
+      pathname === item.href || 
+      (item.href !== "/dashboard" && pathname.startsWith(`${item.href}/`));
     
     return (
       <Link
